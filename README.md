@@ -20,10 +20,23 @@ Este proyecto está especialmente diseñado para:
 - Profesionales y estudiantes de **educación**, **medicina**, **ingeniería** y **IA aplicada**.
 - Cualquier persona interesada en comprender cómo la IA está redefiniendo la agencia humana.
 
-## 📚 Fuentes académicas
+## 📚 Fuentes y documentación
 
-Incluye referencias revisadas de fuentes fiables y actualizadas, y una selección final de publicaciones de alto impacto.
+- Incluye referencias revisadas de fuentes fiables y actualizadas.
+- Una sección final muestra publicaciones de alto impacto para profundizar.
 
-## 📁 El proyecto ha sido desplegado en Vercel y Netlify
+## Tecnologías
+
+- HTML5, CSS3, JavaScript vanilla
+- Chart.js para visualizaciones
+- Tailwind CSS para estilos
+
+## Ver el proyecto desplegado en Vercel y Netlify
+
+- [[Enlace al sitio desplegado en Netlify](https://gencond.netlify.app/)]
 - 
+
+## Licencia
+
+MIT License
 
