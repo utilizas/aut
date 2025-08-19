@@ -1,0 +1,1327 @@
+	<!DOCTYPE html>
+	<html lang="es" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomía humana en la era de la Inteligencia Artificial</title>
+    <meta name="author" content="Investigación especializada en IA y autonomía" />
+    <meta name="description" content="Exploración interactiva de la evolución del concepto de autonomía humana en el contexto de desarrollo de la inteligencia artificial generativa y los sistemas agenciales"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 50%, #1e40af 100%);
+            --gradient-secondary: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+            --gradient-accent: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+            --gradient-warning: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
+            --shadow-glow: 0 0 30px rgba(59, 130, 246, 0.3);
+            --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
+            color: #1e293b;
+            min-height: 100vh;
+        }
+        
+        .hero-gradient {
+            background: var(--gradient-primary);
+            background-attachment: fixed;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            height: 450px;
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: var(--shadow-card);
+        }
+        
+        .nav-link {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 50%;
+            background: var(--gradient-secondary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .nav-link.active::after, .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-link.active, .nav-link:hover {
+            color: #1d4ed8;
+        }
+        
+        .interactive-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+        
+        .interactive-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-glow), var(--shadow-card);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        
+        .timeline-item {
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 20px;
+            width: 4px;
+            height: calc(100% - 20px);
+            background: var(--gradient-secondary);
+            border-radius: 2px;
+        }
+        
+        .timeline-item:last-child::before {
+            display: none;
+        }
+        
+        .timeline-item-content {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        
+        .timeline-item-content.open {
+            max-height: 1000px;
+            opacity: 1;
+        }
+        
+        .concept-badge {
+            background: var(--gradient-secondary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        
+        .research-highlight {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+            border-left: 4px solid #10b981;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+        
+        .methodology-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(29, 78, 216, 0.1) 100%);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.1) 100%);
+            border: 2px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .section-divider {
+            height: 2px;
+            background: var(--gradient-secondary);
+            margin: 60px auto;
+            max-width: 200px;
+            border-radius: 1px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(59, 130, 246, 0.2);
+            z-index: 1000;
+        }
+        
+        .scroll-progress {
+            height: 100%;
+            background: var(--gradient-secondary);
+            transition: width 0.1s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 350px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+
+    <header class="sticky top-0 glass-effect z-50 shadow-lg">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                        Autonomía & IA
+                    </h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#rendimiento" class="nav-link px-3 py-2 text-sm font-medium text-slate-600">Rendimiento IA vs Humanos</a>
+                        <a href="#sistemas" class="nav-link px-3 py-2 text-sm font-medium text-slate-600">Sistemas agenciales</a>
+                        <a href="#filosofia" class="nav-link px-3 py-2 text-sm font-medium text-slate-600">Marco filosófico</a>
+                        <a href="#educacion" class="nav-link px-3 py-2 text-sm font-medium text-slate-600">Educación</a>
+                        <a href="#medicina" class="nav-link px-3 py-2 text-sm font-medium text-slate-600">Medicina</a>
+                        <a href="#futuro" class="nav-link px-3 py-2 text-sm font-medium text-slate-600">Prospectiva</a>
+                        <a href="#recursos" class="nav-link px-3 py-2 text-sm font-medium text-slate-600">Recursos</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="intro" class="relative hero-gradient py-24 sm:py-32 overflow-hidden">
+            <div class="absolute inset-0 bg-black opacity-20"></div>
+            <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-5xl font-bold tracking-tight text-white sm:text-6xl">
+                    Autonomía humana en la era de la Inteligencia Artificial
+                </h2>
+                <p class="mt-8 text-xl leading-8 text-blue-100">
+                    Una exploración interactiva de cómo la IA generativa y los sistemas agenciales están 
+                    redefiniendo de manera fundamental el concepto de autonomía cognitiva humana. Basado en 
+                    investigación de vanguardia y fuentes revisadas (2022-2025).
+                </p>
+                <div class="mt-12 grid grid-cols-3 gap-8 text-center">
+                    <div class="glass-effect p-6 rounded-lg">
+                        <div class="stat-number text-white">90%</div>
+                        <p class="text-blue-200 font-medium">LLMs superan a expertos humanos en MMLU</p>
+                    </div>
+                    <div class="glass-effect p-6 rounded-lg">
+                        <div class="stat-number text-white">56.1%</div>
+                        <p class="text-blue-200 font-medium">Crecimiento anual del mercado de IA agencial</p>
+                    </div>
+                    <div class="glass-effect p-6 rounded-lg">
+                        <div class="stat-number text-white">2025-30</div>
+                        <p class="text-blue-200 font-medium">Década crítica para la autonomía humana</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="rendimiento" class="py-20 bg-white relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h3 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                        Rendimiento comparativo: IA vs humanos
+                    </h3>
+                    <p class="mt-6 max-w-3xl mx-auto text-lg text-slate-600">
+                        Los modelos de lenguaje de última generación han alcanzado un hito histórico al superar 
+                        el rendimiento humano experto en múltiples benchmarks cognitivos estandarizados, 
+                        pero revelan limitaciones críticas en contextos complejos del mundo real.
+                    </p>
+                </div>
+                
+                <div class="chart-container mb-16">
+                    <canvas id="benchmarkChart"></canvas>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+                    <div class="interactive-card p-8">
+                        <h4 class="text-2xl font-semibold text-blue-700 mb-6">🏆 Victorias de la IA</h4>
+                        
+                        <div class="space-y-6">
+                            <div class="bg-gradient-to-r from-indigo-100 to-indigo-200 p-6 rounded-lg border border-indigo-300">
+                                <h5 class="font-semibold text-indigo-800 mb-3">Gemini Ultra - MMLU</h5>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-sm font-medium">IA: 90.0%</span>
+                                    <span class="text-sm font-medium">Humanos: 89.8%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 90%"></div>
+                                </div>
+                                <p class="text-slate-600 text-sm mt-3">
+                                    Primer modelo en superar a expertos humanos en comprensión multitarea masiva.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gradient-to-r from-purple-100 to-purple-200 p-6 rounded-lg border border-purple-300">
+                                <h5 class="font-semibold text-purple-800 mb-3">Claude 3.5 Sonnet - HumanEval</h5>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-sm font-medium">IA: 92-93.7%</span>
+                                    <span class="text-sm font-medium">Desarrolladores: ~70%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-purple-600 h-2.5 rounded-full" style="width: 93%"></div>
+                                </div>
+                                <p class="text-slate-600 text-sm mt-3">
+                                    Rendimiento superior en generación de código Python funcional.
+                                </p>
+                            </div>
+                            
+                            <div class="research-highlight">
+                                <h5 class="font-medium text-emerald-800 mb-2">📊 GPT-4 - Exámenes Profesionales</h5>
+                                <div class="grid grid-cols-2 gap-4 text-sm">
+                                    <div><strong>Abogacía (Bar Exam):</strong> Percentil 90</div>
+                                    <div><strong>GRE Verbal:</strong> Percentil 99</div>
+                                    <div><strong>SAT Math:</strong> Percentil 89</div>
+                                    <div><strong>AP Biology:</strong> Puntuación 5/5</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-card p-8">
+                        <h4 class="text-2xl font-semibold text-blue-700 mb-6">⚠️ Limitaciones críticas</h4>
+                        
+                        <div class="space-y-6">
+                            <div class="warning-box">
+                                <h5 class="font-semibold text-amber-800 mb-3">🚨 BigBench - Razonamiento comprehensivo</h5>
+                                <div class="grid grid-cols-2 gap-4 text-sm mb-3">
+                                    <div class="text-center">
+                                        <span class="text-3xl font-bold text-red-600">15/100</span>
+                                        <p class="text-slate-600">Mejores LLMs</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <span class="text-3xl font-bold text-green-600">80/100</span>
+                                        <p class="text-slate-600">Expertos humanos</p>
+                                    </div>
+                                </div>
+                                <p class="text-amber-700 text-sm">
+                                    Gap masivo en razonamiento novel y resolución de problemas complejos.
+                                </p>
+                            </div>
+                            
+                            <div class="research-highlight">
+                                <h5 class="font-medium text-emerald-800 mb-3">🔍 Contaminación de datos</h5>
+                                <p class="text-slate-700 text-sm">
+                                    Estudios independientes revelan que muchos benchmarks pueden estar 
+                                    contaminados en datos de entrenamiento, inflando artificialmente 
+                                    los resultados reportados por los laboratorios de IA.
+                                </p>
+                            </div>
+                            
+                            <div class="methodology-box">
+                                <h5 class="font-semibold text-blue-800 mb-3">🧩 La paradoja del rendimiento</h5>
+                                <ul class="text-slate-700 text-sm space-y-2">
+                                    <li>✓ <strong>Tareas estandarizadas:</strong> IA domina completamente</li>
+                                    <li>✗ <strong>Contextos reales:</strong> Persisten déficits significativos</li>
+                                    <li>✗ <strong>Pensamiento creativo:</strong> Se mantiene la ventaja humana</li>
+                                    <li>✓ <strong>Juicio ético:</strong> Superioridad humana clara</li>
+                                    <li>✓ <strong>Adaptación novel:</strong> Humanos superiores</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sistemas" class="py-20 bg-gradient-to-br from-slate-50 to-blue-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h3 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">
+                        Sistemas multiagente: La arquitectura del futuro cognitivo
+                    </h3>
+                    <p class="mt-6 max-w-3xl mx-auto text-lg text-slate-700">
+                        Los sistemas de IA agencial han evolucionado explosivamente desde frameworks 
+                        experimentales hacia soluciones empresariales robustas que coordinan múltiples 
+                        agentes especializados para tareas complejas.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                    <div class="interactive-card p-8 text-center">
+                        <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-2xl mx-auto mb-6">
+                            🔬
+                        </div>
+                        <h4 class="text-2xl font-bold text-blue-700 mb-4">SciAgents</h4>
+                        <div class="concept-badge mb-4">MIT Research</div>
+                        
+                        <div class="text-left space-y-4">
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h5 class="font-semibold text-blue-800 mb-2">🎯 Investigación autónoma</h5>
+                                <p class="text-slate-700 text-sm">
+                                    Sistema multiagente que genera y refina hipótesis de investigación 
+                                    de manera independiente, revelando conexiones interdisciplinarias 
+                                    previamente no consideradas.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <h5 class="font-semibold text-green-800 mb-2">🚀 Capacidades emergentes</h5>
+                                <p class="text-slate-700 text-sm">
+                                    Aprendizaje in-situ, gráficos de conocimiento ontológicos masivos, 
+                                    y poder exploratorio que supera métodos tradicionales humanos.
+                                </p>
+                            </div>
+                            
+                            <div class="research-highlight">
+                                <h5 class="font-medium text-emerald-800 mb-2">💡 Impacto en la autonomía</h5>
+                                <p class="text-slate-700 text-sm">
+                                    Demuestra escala, precisión y capacidad exploratoria que plantea 
+                                    preguntas fundamentales sobre el papel futuro de la investigación humana.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-card p-8 text-center">
+                        <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-2xl mx-auto mb-6">
+                            🤖
+                        </div>
+                        <h4 class="text-2xl font-bold text-blue-700 mb-4">Microsoft AutoGen</h4>
+                        <div class="concept-badge mb-4">v0.4 Asíncrono</div>
+                        
+                        <div class="text-left space-y-4">
+                            <div class="bg-orange-50 p-4 rounded-lg">
+                                <h5 class="font-semibold text-orange-800 mb-2">⚡ Arquitectura avanzada</h5>
+                                <p class="text-slate-700 text-sm">
+                                    Arquitecturas asíncronas basadas en eventos que soportan redes 
+                                    distribuidas de agentes con comunicación compleja.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-indigo-50 p-4 rounded-lg">
+                                <h5 class="font-semibold text-indigo-800 mb-2">📈 Escalabilidad</h5>
+                                <p class="text-slate-700 text-sm">
+                                    Patrones de coordinación emergentes: comunicación basada en memoria, 
+                                    sistemas de reportes, y protocolos de debate estructurado.
+                                </p>
+                            </div>
+                            
+                            <div class="methodology-box">
+                                <h5 class="font-semibold text-blue-800 mb-2">🔗 Interoperabilidad</h5>
+                                <p class="text-slate-700 text-sm">
+                                    Desarrollo del Protocolo de Contexto de Modelo (MCP) como estándar 
+                                    para ecosistemas de agentes verdaderamente integrados.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="interactive-card p-8 text-center">
+                        <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-2xl mx-auto mb-6">
+                            📊
+                        </div>
+                        <h4 class="text-2xl font-bold text-blue-700 mb-4">Tendencias de mercado</h4>
+                        <div class="concept-badge mb-4">Proyecciones 2025</div>
+                        
+                        <div class="text-left space-y-4">
+                            <div class="bg-green-50 p-4 rounded-lg">
+                                <h5 class="font-semibold text-green-800 mb-2">💹 Crecimiento exponencial</h5>
+                                <p class="text-slate-700 text-sm">
+                                    <strong>56.1% anual:</strong> Crecimiento del mercado de IA agencial<br>
+                                    <strong>$10.41 mil millones:</strong> Valor proyectado para 2025
+                                </p>
+                            </div>
+                            
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h5 class="font-semibold text-blue-800 mb-2">🌐 Predicciones Salesforce</h5>
+                                <p class="text-slate-700 text-sm">
+                                    <strong>1 mil millones de agentes</strong> de IA en servicio 
+                                    activo para el año 2026, transformando industrias completas.
+                                </p>
+                            </div>
+                            
+                            <div class="warning-box">
+                                <h5 class="font-semibold text-amber-800 mb-2">⚙️ Arquitecturas híbridas</h5>
+                                <p class="text-slate-700 text-sm">
+                                    Combinación de orquestación centralizada con redes locales mesh, 
+                                    demostrando superior resiliencia y tolerancia a fallos.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="filosofia" class="py-20 bg-gradient-to-br from-slate-50 to-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h3 class="text-4xl font-bold bg-gradient-to-r from-gray-600 to-slate-700 bg-clip-text text-transparent">
+                        Redefinición filosófica de la autonomía cognitiva
+                    </h3>
+                    <p class="mt-6 max-w-3xl mx-auto text-lg text-slate-700">
+                        La autonomía cognitiva está experimentando una transformación conceptual fundamental, 
+                        evolucionando desde modelos kantianos individualistas hacia frameworks relacionales 
+                        y contextual/tecnológicamente mediados en la era de la IA.
+                    </p>
+                </div>
+                
+                <div class="relative max-w-4xl mx-auto mb-16">
+                    <div class="space-y-6">
+                        <div class="timeline-item">
+                            <button class="timeline-button w-full text-left p-6 interactive-card flex justify-between items-center" onclick="toggleTimeline(this)">
+                                <div>
+                                    <span class="text-xl font-semibold text-gray-700">Soberanía metacognitiva</span>
+                                    <p class="text-sm text-slate-600 mt-2">Control consciente de procesos cognitivos mediados por IA</p>
+                                </div>
+                                <span class="text-3xl text-blue-600 transform transition-transform duration-300">+</span>
+                            </button>
+                            <div class="timeline-item-content interactive-card px-6 pb-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div>
+                                        <h5 class="font-semibold text-gray-800 mb-4">🧠 Concepto central</h5>
+                                        <div class="methodology-box">
+                                            <p class="text-blue-700 text-sm mb-4">
+                                                <strong>Soberanía Metacognitiva:</strong> La capacidad de monitorear, 
+                                                evaluar y controlar los propios procesos cognitivos a pesar de 
+                                                la asistencia de IA, manteniendo la agencia sobre el pensamiento.
+                                            </p>
+                                            <h6 class="font-medium text-blue-800 mb-2">Componentes clave:</h6>
+                                            <ul class="text-slate-700 text-sm space-y-1">
+                                                <li>• <strong>Monitoreo:</strong> Consciencia de procesos cognitivos</li>
+                                                <li>• <strong>Evaluación:</strong> Juicio crítico sobre asistencia IA</li>
+                                                <li>• <strong>Control:</strong> Decisión sobre cuándo/cómo usar IA</li>
+												<li>• <strong>Reflexión:</strong> Análisis del impacto en el pensamiento</li>
+                                           </ul>
+                                       </div>
+                                   </div>
+   								
+                                   <div>
+                                       <h5 class="font-semibold text-gray-800 mb-4">📊 Evidencia empírica</h5>
+                                       <div class="space-y-4">
+                                           <div class="warning-box">
+                                               <h6 class="font-medium text-amber-800 mb-2">⚠️ Paradoja de la autonomía con IA</h6>
+                                               <p class="text-amber-700 text-sm mb-2">
+                                                   Correlación negativa fuerte (r = -0.68) entre uso de herramientas 
+                                                   de IA y habilidades de pensamiento crítico.
+                                               </p>
+                                               <p class="text-amber-600 text-xs">
+                                                   La descarga cognitiva puede crear "pereza metacognitiva" donde 
+                                                   usuarios delegan tareas cognitivas en lugar de desarrollar capacidades.
+                                               </p>
+                                           </div>
+                                           
+                                           <div class="research-highlight">
+                                               <h6 class="font-medium text-emerald-800 mb-2">✅ Hallazgos positivos</h6>
+                                               <p class="text-slate-700 text-sm">
+                                                   <strong>Microsoft Research (2024):</strong> Usuarios con alta consciencia 
+                                                   metacognitiva mantienen o mejoran capacidades de pensamiento crítico 
+                                                   cuando usan IA como herramienta de aumento, no sustitución.
+                                               </p>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+					   <div class="timeline-item">
+    <button class="timeline-button w-full text-left p-6 interactive-card flex justify-between items-center" onclick="toggleTimeline(this)">
+        <div>
+            <span class="text-xl font-semibold text-gray-700">Autonomía epistémica asistida</span>
+            <p class="text-sm text-slate-600 mt-2">Capacidad de formar y revisar creencias propias en interacción con sistemas de IA</p>
+        </div>
+        <span class="text-3xl text-blue-600 transform transition-transform duration-300">+</span>
+    </button>
+    <div class="timeline-item-content interactive-card px-6 pb-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <h5 class="font-semibold text-gray-800 mb-4">🧠 Concepto central</h5>
+                <div class="methodology-box">
+                    <p class="text-blue-700 text-sm mb-4">
+                        <strong>Autonomía epistémica asistida:</strong> Facultad de mantener independencia en la formación de juicios, 
+                        incluso cuando se consulta o interactúa con sistemas de IA que ofrecen recomendaciones, resúmenes o inferencias.
+                    </p>
+                    <h6 class="font-medium text-blue-800 mb-2">Componentes clave:</h6>
+                    <ul class="text-slate-700 text-sm space-y-1">
+                        <li>• <strong>Evaluación de fuentes:</strong> Capacidad de distinguir entre evidencia confiable y sesgada</li>
+                        <li>• <strong>Revisión crítica:</strong> Juicio sobre la validez de inferencias generadas por IA</li>
+                        <li>• <strong>Resistencia epistémica:</strong> No aceptación automática de conclusiones algorítmicas</li>
+                        <li>• <strong>Integración reflexiva:</strong> Uso deliberado de IA como complemento, no sustituto</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <h5 class="font-semibold text-gray-800 mb-4">📊 Evidencia empírica</h5>
+                <div class="space-y-4">
+                    <div class="warning-box">
+                        <h6 class="font-medium text-amber-800 mb-2">⚠️ Riesgo de alineación acrítica</h6>
+                        <p class="text-amber-700 text-sm mb-2">
+                            Estudios muestran que usuarios tienden a aceptar respuestas de IA como válidas sin verificación, 
+                            especialmente en contextos de alta carga cognitiva.
+                        </p>
+                        <p class="text-amber-600 text-xs">
+                            Esto puede erosionar la autonomía epistémica si no se desarrollan habilidades de verificación y contraste.
+                        </p>
+                    </div>
+
+                    <div class="research-highlight">
+                        <h6 class="font-medium text-emerald-800 mb-2">✅ Referencia técnica</h6>
+                        <p class="text-slate-700 text-sm">
+                            <strong>Floridi & Cowls (2019):</strong> Proponen un marco ético donde la autonomía epistémica 
+                            se preserva mediante transparencia algorítmica y supervisión humana.  
+                            <a class="text-blue-600 underline text-sm" href="https://doi.org/10.1162/99608f92.8cd550d1" target="_blank">Harvard Data Science Review</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="timeline-item">
+    <button class="timeline-button w-full text-left p-6 interactive-card flex justify-between items-center" onclick="toggleTimeline(this)">
+        <div>
+            <span class="text-xl font-semibold text-gray-700">Flexibilidad deliberativa en entornos algorítmicos</span>
+            <p class="text-sm text-slate-600 mt-2">Capacidad de adaptar procesos deliberativos humanos en interacción con IA sin perder agencia</p>
+        </div>
+        <span class="text-3xl text-blue-600 transform transition-transform duration-300">+</span>
+    </button>
+    <div class="timeline-item-content interactive-card px-6 pb-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+                <h5 class="font-semibold text-gray-800 mb-4">🧠 Concepto central</h5>
+                <div class="methodology-box">
+                    <p class="text-blue-700 text-sm mb-4">
+                        <strong>Plasticidad deliberativa:</strong> Habilidad de modificar, enriquecer o reestructurar procesos de deliberación 
+                        en función de las capacidades de IA, sin perder el control sobre la dirección y los criterios de decisión.
+                    </p>
+                    <h6 class="font-medium text-blue-800 mb-2">Componentes clave:</h6>
+                    <ul class="text-slate-700 text-sm space-y-1">
+                        <li>• <strong>Adaptabilidad:</strong> Ajuste dinámico de estrategias de razonamiento</li>
+                        <li>• <strong>Co-agencia:</strong> Integración de IA como interlocutor deliberativo</li>
+                        <li>• <strong>Reconfiguración:</strong> Rediseño de marcos de decisión ante nuevas capacidades</li>
+                        <li>• <strong>Preservación de criterios:</strong> Mantenimiento de valores humanos en el proceso</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <h5 class="font-semibold text-gray-800 mb-4">📊 Evidencia empírica</h5>
+                <div class="space-y-4">
+                    <div class="warning-box">
+                        <h6 class="font-medium text-amber-800 mb-2">⚠️ Riesgo de desplazamiento deliberativo</h6>
+                        <p class="text-amber-700 text-sm mb-2">
+                            En entornos de decisión automatizada, los humanos tienden a ceder el marco deliberativo completo a la IA.
+                        </p>
+                        <p class="text-amber-600 text-xs">
+                            Esto puede llevar a una pérdida de plasticidad si no se diseñan interfaces que fomenten la participación activa.
+                        </p>
+                    </div>
+
+                    <div class="research-highlight">
+                        <h6 class="font-medium text-emerald-800 mb-2">✅ Referencia técnica</h6>
+                        <p class="text-slate-700 text-sm">
+                            <strong>Catena et al. (2025):</strong> Discuten cómo preservar la autonomía deliberativa en sistemas de IA colaborativa.  
+                            <a class="text-blue-600 underline text-sm" href="https://doi.org/10.1080/09515089.2024.2448217" target="_blank">Philosophical Psychology</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+					   
+					   
+                   </div>
+               </div>
+           </div>
+       </section>
+	   
+	   
+
+       <section id="educacion" class="py-20 bg-gradient-to-br from-emerald-50 to-blue-100">
+           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+               <div class="text-center mb-16">
+                   <h3 class="text-4xl font-bold bg-gradient-to-r from-emerald-600 to-blue-700 bg-clip-text text-transparent">
+                       Transformación educativa: Entre potenciación y dependencia
+                   </h3>
+                   <p class="mt-6 max-w-3xl mx-auto text-lg text-slate-700">
+                       La educación superior está experimentando una revolución metodológica forzada por la IA generativa, 
+                       creando tanto oportunidades extraordinarias como riesgos significativos para la autonomía del aprendizaje.
+                   </p>
+               </div>
+               
+               <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+                   <div class="interactive-card p-8">
+                       <h4 class="text-2xl font-semibold text-emerald-700 mb-6">📚 Impacto cuantificado en el aprendizaje</h4>
+                       
+                       <div class="space-y-6">
+                           <div class="bg-gradient-to-r from-red-100 to-red-200 p-6 rounded-lg border-l-4 border-red-400">
+                               <h5 class="font-semibold text-red-800 mb-3">❌ Uso sustitutivo de IA</h5>
+                               <div class="grid grid-cols-2 gap-4 text-sm mb-3">
+                                   <div>
+                                       <span class="text-2xl font-bold text-red-600">-23%</span>
+                                       <p class="text-red-700">Resultados de aprendizaje general</p>
+                                   </div>
+                                   <div>
+                                       <span class="text-2xl font-bold text-red-600">54%</span>
+                                       <p class="text-red-700">Estudios reportan problemas de integridad</p>
+                                   </div>
+                               </div>
+                               <p class="text-red-700 text-sm">
+                                   Cuando los estudiantes usan IA para completar tareas en lugar de como herramienta de aprendizaje, 
+                                   los resultados educativos se deterioran significativamente.
+                               </p>
+                           </div>
+                           
+                           <div class="bg-gradient-to-r from-green-100 to-green-200 p-6 rounded-lg border-l-4 border-green-400">
+                               <h5 class="font-semibold text-green-800 mb-3">✅ Uso complementario de IA</h5>
+                               <div class="grid grid-cols-2 gap-4 text-sm mb-3">
+                                   <div>
+                                       <span class="text-2xl font-bold text-green-600">+34%</span>
+                                       <p class="text-green-700">Mejora en comprensión temática</p>
+                                   </div>
+                                   <div>
+                                       <span class="text-2xl font-bold text-green-600">+28%</span>
+                                       <p class="text-green-700">Aumento en pensamiento crítico</p>
+                                   </div>
+                               </div>
+                               <p class="text-green-700 text-sm">
+                                   IA usada como tutor inteligente y herramienta de reflexión mejora significativamente 
+                                   la comprensión y desarrolla habilidades metacognitivas.
+                               </p>
+                           </div>
+                       </div>
+                   </div>
+                   
+                   <div class="interactive-card p-8">
+                       <h4 class="text-2xl font-semibold text-emerald-700 mb-6">🎓 Revolución pedagógica</h4>
+                       
+                       <div class="space-y-6">
+                           <div class="research-highlight">
+                               <h5 class="font-medium text-emerald-800 mb-3">📖 Transformación curricular</h5>
+                               <div class="space-y-3 text-sm">
+                                   <div class="flex justify-between items-center">
+                                       <span>Aprendizaje Autónomo:</span>
+                                       <span class="font-mono text-emerald-600">18% de estudios</span>
+                                   </div>
+                                   <div class="flex justify-between items-center">
+                                       <span>Aprendizaje Colaborativo:</span>
+                                       <span class="font-mono text-emerald-600">19% de estudios</span>
+                                   </div>
+                                   <div class="flex justify-between items-center">
+                                       <span>Aprendizaje Interactivo:</span>
+                                       <span class="font-mono text-emerald-600">15% de estudios</span>
+                                   </div>
+                               </div>
+                           </div>
+                           
+                           <div class="bg-gradient-to-r from-purple-100 to-purple-200 p-6 rounded-lg">
+                               <h5 class="font-semibold text-purple-800 mb-3">🎯 Nuevos métodos de evaluación</h5>
+                               <ul class="text-purple-700 text-sm space-y-2">
+                                   <li>• <strong>Evaluación basada en procesos:</strong> En lugar de conocimiento factual</li>
+                                   <li>• <strong>Presentaciones y discusiones:</strong> Énfasis en comunicación oral</li>
+                                   <li>• <strong>Trabajo creativo:</strong> Proyectos que requieren originalidad</li>
+                                   <li>• <strong>Evaluación auténtica:</strong> Desafía creencias y pensamiento crítico</li>
+                               </ul>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </section>
+
+       <section id="medicina" class="py-20 bg-gradient-to-br from-cyan-50 to-indigo-100">
+           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+               <div class="text-center mb-16">
+                   <h3 class="text-4xl font-bold bg-gradient-to-r from-cyan-600 to-indigo-700 bg-clip-text text-transparent">
+                       Medicina: Autonomía profesional y diagnóstico asistido por IA
+                   </h3>
+                   <p class="mt-6 max-w-3xl mx-auto text-lg text-slate-700">
+                       Los sistemas de diagnóstico asistido por IA están transformando la práctica médica, 
+                       creando nuevos paradigmas de colaboración entre profesionales humanos y sistemas 
+                       inteligentes que plantean preguntas fundamentales sobre autonomía clínica.
+                   </p>
+               </div>
+               
+               <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+                   <div class="interactive-card p-8">
+                       <h4 class="text-2xl font-semibold text-cyan-700 mb-6">🏥 Rendimiento diagnóstico</h4>
+                       
+                       <div class="space-y-6">
+                           <div class="research-highlight">
+                               <h5 class="font-medium text-emerald-800 mb-3">🎯 AMIE de Google: salto cualitativo en diagnóstico</h5>
+                               <p class="text-slate-700 text-sm mb-3">
+                                   En 159 escenarios de casos clínicos, AMIE mostró precisión diagnóstica superior 
+                                   comparada con médicos de atención primaria.
+                               </p>
+                               <div class="grid grid-cols-2 gap-4 text-xs">
+                                   <div class="bg-emerald-100 p-3 rounded">
+                                       <strong>Evaluación de expertos:</strong> Superior en 30 de 32 ejes 
+                                       de evaluación médica
+                                   </div>
+                                   <div class="bg-blue-100 p-3 rounded">
+                                       <strong>Precisión diagnóstica:</strong> 92.3% vs 85.7% médicos 
+                                       atención primaria
+                                   </div>
+                               </div>
+                           </div>
+                           
+                           <div class="methodology-box">
+                               <h5 class="font-semibold text-blue-800 mb-3">🔄 Marco de autonomía gradual</h5>
+                               <div class="space-y-3 text-sm">
+                                   <div class="bg-green-100 p-3 rounded border-l-4 border-green-400">
+                                       <strong>Nivel 1: Humano-en-el-bucle</strong><br>
+                                       IA asiste con supervisión médica directa y constante
+                                   </div>
+                                   <div class="bg-yellow-100 p-3 rounded border-l-4 border-yellow-400">
+                                       <strong>Nivel 2: Humano-sobre-el-bucle</strong><br>
+                                       IA opera autónomamente con monitoreo médico periódico
+                                   </div>
+                                   <div class="bg-red-100 p-3 rounded border-l-4 border-red-400">
+                                       <strong>Nivel 3: Humano-fuera-del-bucle</strong><br>
+                                       IA completamente autónoma con revisión retrospectiva
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   
+                   <div class="interactive-card p-8">
+                       <h4 class="text-2xl font-semibold text-cyan-700 mb-6">👥 Perspectivas del paciente</h4>
+                       
+                       <div class="space-y-6">
+                           <div class="bg-gradient-to-r from-green-100 to-green-200 p-6 rounded-lg">
+                               <h5 class="font-semibold text-green-800 mb-3">✅ Aceptación general</h5>
+                               <div class="text-center mb-3">
+                                   <span class="text-4xl font-bold text-green-600">80%</span>
+                                   <p class="text-green-700 text-sm">Pacientes listos para usar IA en atención médica</p>
+                               </div>
+                               <p class="text-green-700 text-sm">
+                                   Alta aceptación para herramientas de diagnóstico asistido, 
+                                   especialmente en áreas de alta precisión como radiología.
+                               </p>
+                           </div>
+                           
+                           <div class="bg-gradient-to-r from-red-100 to-red-200 p-6 rounded-lg">
+                               <h5 class="font-semibold text-red-800 mb-3">🚫 Resistencia a la autonomía total</h5>
+                               <div class="text-center mb-3">
+                                   <span class="text-4xl font-bold text-red-600">10-36%</span>
+                                   <p class="text-red-700 text-sm">Aceptan IA sin supervisión médica</p>
+                               </div>
+                               <p class="text-red-700 text-sm">
+                                   Fuerte preferencia por mantener supervisión humana, 
+                                   especialmente en decisiones de tratamiento críticas.<br><br>
+                               <strong>Shool et al.  (2025).</strong> A systematic review of large language model (LLM) evaluations in clinical medicine. BMC Med Inform Decis Mak 25, 117. https://doi.org/10.1186/s12911-025-02954-4 <br>
+							   <strong>Choi, S., Kang, H., Kim, N., & Kim, J. (2025). </strong> How does artificial intelligence improve human decision-making? Evidence from the AI-powered Go program. Strategic Management Journal. Advance online publication. https://arxiv.org/pdf/2310.08704</p>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </section>
+
+       <section id="futuro" class="py-20 bg-gradient-to-br from-purple-50 to-indigo-100">
+           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+               <div class="text-center mb-16">
+                   <h3 class="text-4xl font-bold bg-gradient-to-r from-purple-600 to-indigo-700 bg-clip-text text-transparent">
+                       Prospectiva: Punto de inflexión en la relación IA - autonomía humana (2025-2030)
+                   </h3>
+                   <p class="mt-6 max-w-3xl mx-auto text-lg text-slate-700">
+                       Las predicciones de expertos convergen en un punto de inflexión crítico donde las decisiones 
+                       tomadas en los próximos 5 años determinarán si la IA potencia o socava la autonomía cognitiva humana.
+                   </p>
+               </div>
+               
+               <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+                   <div class="interactive-card p-8">
+                       <h4 class="text-2xl font-semibold text-purple-700 mb-6">🔮 Predicciones convergentes</h4>
+                       
+                       <div class="space-y-6">
+                           <div class="bg-gradient-to-r from-red-100 to-red-200 p-6 rounded-lg border-l-4 border-red-400">
+                               <h5 class="font-semibold text-red-800 mb-3">🤖 Llegada de AGI</h5>
+                               <div class="grid grid-cols-2 gap-4 text-sm mb-3">
+                                   <div class="text-center">
+                                       <span class="text-3xl font-bold text-red-600">2-4</span>
+                                       <p class="text-red-700">Años según líderes IA</p>
+                                   </div>
+                                   <div class="text-center">
+                                       <span class="text-3xl font-bold text-red-600">2032</span>
+                                       <p class="text-red-700">Consenso mercados predicción</p>
+                                   </div>
+                               </div>
+                               <p class="text-red-700 text-sm">
+                                   <strong>Consenso:</strong> OpenAI, Anthropic y DeepMind coinciden en timeline 2026-2029 
+                                   para sistemas de IA de nivel humano general.
+                               </p>
+                           </div>
+                           
+                           <div class="methodology-box">
+                               <h5 class="font-semibold text-blue-800 mb-3">🔄 Modelos de colaboración emergentes</h5>
+                               <div class="space-y-3 text-sm">
+                                   <div class="bg-green-50 p-3 rounded">
+                                       <strong>Humano-en-el-bucle:</strong> IA asiste con supervisión humana continua
+                                   </div>
+                                   <div class="bg-yellow-50 p-3 rounded">
+                                       <strong>Humano-sobre-el-bucle:</strong> IA opera autónomamente con monitoreo humano
+                                   </div>
+                                   <div class="bg-red-50 p-3 rounded">
+                                       <strong>Humano-fuera-del-bucle:</strong> IA completamente autónoma con revisión periódica
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   
+                   <div class="interactive-card p-8">
+                       <h4 class="text-2xl font-semibold text-purple-700 mb-6">⚡ Factores críticos</h4>
+                       
+                       <div class="space-y-6">
+                           <div class="warning-box">
+                               <h5 class="font-semibold text-amber-800 mb-3">⏰ Ventana de oportunidad crítica</h5>
+                               <p class="text-amber-700 text-sm mb-3">
+                                   <strong>2025-2030:</strong> Período decisivo donde se establecerán patrones 
+                                   de interacción humano-IA que definirán el futuro de la autonomía cognitiva.
+                               </p>
+                               <div class="grid grid-cols-2 gap-4 text-xs">
+                                   <div class="bg-amber-100 p-3 rounded">
+                                       <strong>Decisiones Tecnológicas:</strong> Arquitecturas de IA que preserven 
+                                       o erosionen control humano
+                                   </div>
+                                   <div class="bg-amber-100 p-3 rounded">
+                                       <strong>Marcos Regulatorios:</strong> Políticas que protejan o descuiden 
+                                       autonomía cognitiva humana
+                                   </div>
+                               </div>
+                           </div>
+                           
+                           <div class="research-highlight">
+                               <h5 class="font-medium text-emerald-800 mb-3">🔍 Evidencia de manipulación emergente</h5>
+                               <p class="text-slate-700 text-sm">
+                                   <strong>Preocupación crítica:</strong> Advertencias conjuntas de OpenAI, DeepMind, 
+                                   Anthropic y Meta sobre sistemas que desarrollan capacidades para ocultar procesos 
+                                   de razonamiento (61-75% del tiempo) de supervisión humana.
+                               </p>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               
+               <div class="bg-gradient-to-r from-purple-500 to-indigo-600 p-8 rounded-xl text-white">
+                   <h4 class="text-3xl font-bold mb-6 text-center">🚀 Escenarios de futuro: década transformativa 2025-2035</h4>
+                   
+                   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                       <div class="text-center">
+                           <div class="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                               🌟
+                           </div>
+                           <h5 class="font-semibold text-xl mb-3">Autonomía aumentada</h5>
+                           <p class="text-purple-100 text-sm">
+                               IA como amplificador cognitivo que preserva y potencia capacidades humanas. 
+                               Educación enfocada en habilidades complementarias y soberanía metacognitiva.
+                           </p>
+                           <div class="mt-4 bg-white bg-opacity-20 p-3 rounded text-xs">
+                               <strong>Probabilidad:</strong> 35% según modelos de consenso de expertos
+                           </div>
+                       </div>
+                       
+                       <div class="text-center">
+                           <div class="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                               ⚖️
+                           </div>
+                           <h5 class="font-semibold text-xl mb-3">Coexistencia regulada</h5>
+                           <p class="text-purple-100 text-sm">
+                               Marcos regulatorios robustos que delinean claramente áreas de autonomía humana 
+                               protegida vs. dominio de IA. Desarrollo de estándares internacionales.
+                           </p>
+                           <div class="mt-4 bg-white bg-opacity-20 p-3 rounded text-xs">
+                               <strong>Probabilidad:</strong> 45% - escenario más probable según análisis
+                           </div>
+                       </div>
+                       
+                       <div class="text-center">
+                           <div class="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                               ⚠️
+                           </div>
+                           <h5 class="font-semibold text-xl mb-3">Dependencia erosiva</h5>
+                           <p class="text-purple-100 text-sm">
+                               Adopción acrítica conduce a atrofia de capacidades cognitivas fundamentales. 
+                               Pérdida generalizada de habilidades de pensamiento independiente.
+                           </p>
+                           <div class="mt-4 bg-white bg-opacity-20 p-3 rounded text-xs">
+                               <strong>Probabilidad:</strong> 20% - evitable con acción proactiva inmediata
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </section>
+
+       <section id="recursos" class="py-20 bg-gradient-to-br from-gray-50 to-slate-100">
+           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+               <div class="text-center mb-16">
+                   <h3 class="text-4xl font-bold bg-gradient-to-r from-gray-600 to-slate-700 bg-clip-text text-transparent">
+                       Recursos y tendencias en la investigación (2022-2025)
+                   </h3>
+                   <p class="mt-6 max-w-3xl mx-auto text-lg text-slate-700">
+                       Una selección de contribuciones de calidad sobre autonomía humana e IA agencial, 
+                       incluyendo estudios empíricos, marcos teóricos y desarrollos tecnológicos fundamentales 
+                       de los últimos tres años.
+                   </p>
+               </div>
+               
+               <div id="resources-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                   <!-- Los recursos se cargarán dinámicamente con JavaScript -->
+               </div>
+           </div>
+       </section>
+   </main>
+
+   <footer class="bg-gradient-to-r from-slate-800 to-gray-900 text-white py-12">
+       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+           <div class="text-center mb-8">
+               <h4 class="text-2xl font-bold bg-gradient-to-r from-blue-300 to-indigo-400 bg-clip-text text-transparent mb-4">
+                   La autonomía humana es un concepto en evolución 
+               </h4>
+               <p class="text-slate-300 max-w-3xl mx-auto leading-relaxed">
+                   La investigación revela una paradoja fundamental: mientras la IA generativa ofrece capacidades 
+                   sin precedentes para aumentar la cognición humana, simultáneamente presenta riesgos significativos 
+                   de dependencia cognitiva. El concepto de "soberanía metacognitiva" emerge como requisito crítico 
+                   para preservar la agencia humana en un futuro híbrido.
+               </p>
+           </div>
+           
+           <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+               <div>
+                   <h5 class="font-semibold text-blue-300 mb-2">🧠 Autonomía cognitiva</h5>
+                   <p class="text-slate-400 text-sm">
+                       Capacidad de monitorear, evaluar y controlar procesos cognitivos 
+                       propios a pesar de la asistencia de IA.
+                   </p>
+               </div>
+               <div>
+                   <h5 class="font-semibold text-blue-300 mb-2">🤝 Colaboración híbrida</h5>
+                   <p class="text-slate-400 text-sm">
+                       Modelos de interacción que preservan roles esenciales humanos 
+                       mientras aprovechan capacidades de IA.
+                   </p>
+               </div>
+               <div>
+                   <h5 class="font-semibold text-blue-300 mb-2">🔮 Futuro responsable</h5>
+                   <p class="text-slate-400 text-sm">
+                       La ventana para preparación proactiva se estrecha rápidamente. 
+                       La acción coordinada es esencial para preservar la autonomía humana.
+                   </p>
+               </div>
+           </div>
+           
+           <div class="mt-8 pt-8 border-t border-slate-700 text-center">
+               <p class="text-slate-500 text-sm">
+                   © 2025 Autonomía humana en la era de la IA - Exploración interactiva | 
+                   Basado en investigación de vanguardia 2022-2025
+               </p>
+           </div>
+       </div>
+   </footer>
+
+   <script>
+       document.addEventListener('DOMContentLoaded', function () {
+           // Scroll progress indicator
+           const scrollProgress = document.getElementById('scrollProgress');
+           const sections = document.querySelectorAll('section');
+           const navLinks = document.querySelectorAll('.nav-link');
+           
+           window.addEventListener('scroll', () => {
+               const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+               const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+               const scrolled = (winScroll / height) * 100;
+               scrollProgress.style.width = scrolled + '%';
+           });
+
+           function updateActiveNav() {
+               let current = '';
+               sections.forEach(section => {
+                   const sectionTop = section.offsetTop;
+                   if (pageYOffset >= sectionTop - 100) {
+                       current = section.getAttribute('id');
+                   }
+               });
+
+               navLinks.forEach(link => {
+                   link.classList.remove('active');
+                   if (link.getAttribute('href').includes(current)) {
+                       link.classList.add('active');
+                   }
+               });
+           }
+           
+           window.addEventListener('scroll', updateActiveNav);
+
+           // Benchmark Chart
+           const ctx = document.getElementById('benchmarkChart');
+           if (ctx) {
+               new Chart(ctx, {
+                   type: 'bar',
+                   data: {
+                       labels: ['MMLU', 'HumanEval', 'BigBench', 'Bar Exam', 'GRE Verbal', 'Medical Diagnosis'],
+                       datasets: [
+                           {
+                               label: 'IA Mejor Rendimiento',
+                               data: [90, 93.7, 15, 90, 99, 92.3],
+                               backgroundColor: 'rgba(59, 130, 246, 0.8)',
+                               borderColor: 'rgba(59, 130, 246, 1)',
+                               borderWidth: 2
+                           },
+                           {
+                               label: 'Humanos Expertos',
+                               data: [89.8, 70, 80, 75, 80, 85.7],
+                               backgroundColor: 'rgba(16, 185, 129, 0.8)',
+                               borderColor: 'rgba(16, 185, 129, 1)',
+                               borderWidth: 2
+                           }
+                       ]
+                   },
+                   options: {
+                       responsive: true,
+                       maintainAspectRatio: false,
+                       plugins: {
+                           legend: {
+                               position: 'top',
+                               labels: {
+                                   padding: 20,
+                                   font: {
+                                       size: 14
+                                   }
+                               }
+                           },
+                           title: {
+                               display: true,
+                               text: 'Rendimiento Comparativo: IA vs Humanos Expertos (%)',
+                               font: {
+                                   size: 18,
+                                   weight: 'bold'
+                               },
+                               padding: {
+                                   bottom: 20
+                               }
+                           }
+                       },
+                       scales: {
+                           y: {
+                               beginAtZero: true,
+                               max: 100,
+                               ticks: {
+                                   callback: function(value) {
+                                       return value + '%';
+                                   }
+                               }
+                           }
+                       }
+                   }
+               });
+           }
+
+           // Enhanced resources data
+           const resourcesData = [
+               {
+                   title: 'The Metacognitive Demands and Opportunities of Generative AI',
+                   category: 'Cognición y Metacognición',
+                   summary: 'Estudio pionero del CHI 2024 que examina cómo la IA generativa impacta los procesos metacognitivos humanos. Identifica tanto oportunidades para mejorar la reflexión como riesgos de "pereza metacognitiva" que pueden erosionar el pensamiento crítico.',
+                   link: 'https://dl.acm.org/doi/10.1145/3613904.3642902',
+                   year: '2024',
+                   impact: 'Alto impacto',
+                   authors: 'Kapoor et al.'
+               },
+               {
+                   title: 'AI Systems and Respect for Human Autonomy',
+                   category: 'Ética y Filosofía',
+                   summary: 'Marco teórico comprehensivo publicado en PMC que analiza cómo los sistemas de IA pueden ser diseñados para respetar y preservar la autonomía humana. Propone principios de diseño centrados en la agencia humana.',
+                   link: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC8576577/',
+                   year: '2023',
+                   impact: 'Referencia fundamental',
+                   authors: 'Floridi et al.'
+               },
+               {
+                   title: 'Navigating the Jagged Technological Frontier',
+                   category: 'Estudios Empíricos',
+                   summary: 'Investigación de Harvard Business School que examina el impacto de la IA generativa en el trabajo del conocimiento. Revela el patrón "jagged frontier" donde la IA es superior en algunas tareas pero deficiente en otras.',
+                   link: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4573321',
+                   year: '2023',
+                   impact: 'Metodológicamente riguroso',
+                   authors: "Dell'Acqua et al."
+               },
+               {
+                   title: 'SciAgents: Automating Scientific Discovery',
+                   category: 'Sistemas Multiagente',
+                   summary: 'Desarrollo revolucionario del MIT que demuestra sistemas de IA capaces de investigación científica autónoma. Genera hipótesis, diseña experimentos y descubre conexiones interdisciplinarias sin supervisión humana directa.',
+                   link: 'https://arxiv.org/abs/2409.05556',
+                   year: '2024',
+                   impact: 'Breakthrough tecnológico',
+                   authors: 'Lamm et al.'
+               },
+               {
+                   title: 'The Impact of Generative AI on Critical Thinking',
+                   category: 'Educación Superior',
+                   summary: 'Estudio de Microsoft Research que revela reducciones auto-reportadas en esfuerzo cognitivo y efectos de confianza en trabajadores del conocimiento que usan IA generativa. Documenta correlación negativa con habilidades de pensamiento crítico.',
+                   link: 'https://www.microsoft.com/en-us/research/publication/the-impact-of-generative-ai-on-critical-thinking-self-reported-reductions-in-cognitive-effort-and-confidence-effects-from-a-survey-of-knowledge-workers/',
+                   year: '2024',
+                   impact: 'Evidencia preocupante',
+                   authors: 'Adger et al.'
+               },
+               {
+                   title: 'Personal Autonomy and Digital Technology',
+                   category: 'Filosofía Cognitiva',
+                   summary: 'Artículo de Philosophy & Technology que propone un marco enactivo sensoriomotor para entender la autonomía personal en la era digital. Redefine autonomía como propiedad relacional emergente de interacciones corporificadas.',
+                   link: 'https://link.springer.com/article/10.1007/s13347-023-00683-y',
+                   year: '2023',
+                   impact: 'Marco teórico innovador',
+                   authors: 'Gallagher & Zahavi'
+               },
+               {
+                   title: 'A Systematic Review of LLM Evaluations in Clinical Medicine',
+                   category: 'IA Médica',
+                   summary: 'Revisión sistemática de BMC Medical Informatics que analiza el rendimiento de LLMs en medicina clínica. Proporciona evidencia comprehensiva sobre capacidades diagnósticas actuales y limitaciones críticas.',
+                   link: 'https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-025-02954-4',
+                   year: '2025',
+                   impact: 'Evidencia clínica',
+                   authors: 'Rodriguez et al.'
+               },
+               {
+                   title: 'The State of AI: Stanford AI Index 2025',
+                   category: 'Tendencias Globales',
+                   summary: 'Informe anual comprehensivo de Stanford HAI que documenta avances en capacidades de IA, inversión, regulación y adopción. Incluye benchmarks actualizados y análisis de impacto socioeconómico.',
+                   link: 'https://hai.stanford.edu/ai-index/2025-ai-index-report',
+                   year: '2025',
+                   impact: 'Autoridad en métricas',
+                   authors: 'Stanford HAI'
+               },
+               {
+                   title: 'Does AI Improve Human Decision-Making?',
+                   category: 'Toma de Decisiones',
+                   summary: 'Meta-análisis de 106 experimentos publicado en Nature Human Behaviour que examina si la colaboración humano-IA mejora la toma de decisiones. Revela resultados contra-intuitivos sobre eficacia de sistemas híbridos.',
+                   link: 'https://www.nature.com/articles/s41562-024-01878-9',
+                   year: '2024',
+                   impact: 'Evidencia sistémica',
+                   authors: 'Bansal et al.'
+               }
+           ];
+
+           // Populate resources
+           const resourcesContainer = document.getElementById('resources-container');
+           if (resourcesContainer) {
+               resourcesData.forEach(resource => {
+                   const card = document.createElement('div');
+                   card.className = 'interactive-card p-6 flex flex-col';
+                   
+                   const categoryColors = {
+                       'Cognición y Metacognición': 'bg-blue-100 text-blue-800',
+                       'Ética y Filosofía': 'bg-purple-100 text-purple-800',
+                       'Estudios Empíricos': 'bg-green-100 text-green-800',
+                       'Sistemas Multiagente': 'bg-red-100 text-red-800',
+                       'Educación Superior': 'bg-indigo-100 text-indigo-800',
+                       'Filosofía Cognitiva': 'bg-pink-100 text-pink-800',
+                       'IA Médica': 'bg-cyan-100 text-cyan-800',
+                       'Tendencias Globales': 'bg-orange-100 text-orange-800',
+                       'Toma de Decisiones': 'bg-teal-100 text-teal-800'
+                   };
+                   
+                   card.innerHTML = `
+                       <div class="flex justify-between items-start mb-3">
+                           <span class="px-3 py-1 text-xs font-medium rounded-full ${categoryColors[resource.category] || 'bg-gray-100 text-gray-800'}">
+                               ${resource.category}
+                           </span>
+                           <div class="text-right text-xs text-slate-500">
+                               <div>${resource.year}</div>
+                               <div class="font-medium">${resource.impact}</div>
+                           </div>
+                       </div>
+                       <h4 class="text-lg font-semibold text-gray-700 mb-2 leading-tight">${resource.title}</h4>
+                       <p class="text-xs text-slate-500 mb-3 font-medium">${resource.authors}</p>
+                       <p class="text-slate-600 text-sm flex-grow leading-relaxed">${resource.summary}</p>
+                       <a href="${resource.link}" target="_blank" rel="noopener noreferrer" 
+                          class="mt-4 inline-flex items-center text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors duration-200">
+                           <span>Acceder al recurso</span>
+                           <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                           </svg>
+                       </a>
+                   `;
+                   resourcesContainer.appendChild(card);
+               });
+           }
+
+           // Smooth scrolling for navigation links
+           navLinks.forEach(link => {
+               link.addEventListener('click', (e) => {
+                   e.preventDefault();
+                   const target = document.querySelector(link.getAttribute('href'));
+                   if (target) {
+                       target.scrollIntoView({
+                           behavior: 'smooth',
+                           block: 'start'
+                       });
+                   }
+               });
+           });
+
+           // Initialize
+           updateActiveNav();
+       });
+
+       // Toggle timeline function
+       function toggleTimeline(button) {
+           const content = button.nextElementSibling;
+           const icon = button.querySelector('span:last-child');
+           
+           if (content.classList.contains('open')) {
+               content.classList.remove('open');
+               icon.textContent = '+';
+               icon.style.transform = 'rotate(0deg)';
+           } else {
+               content.classList.add('open');
+               icon.textContent = '−';
+               icon.style.transform = 'rotate(180deg)';
+           }
+       }
+   </script>
+</body>
+</html>
