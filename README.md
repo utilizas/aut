@@ -34,7 +34,7 @@ Este proyecto está especialmente diseñado para:
 ## Ver el proyecto desplegado en Vercel y Netlify
 
 - [Vercel](https://aut-wine.vercel.app/)
-- [[Netlify]()]
+- [Netlify](https://autai.netlify.app/)
 
 ## Licencia
 
