@@ -33,8 +33,8 @@ Este proyecto está especialmente diseñado para:
 
 ## Ver el proyecto desplegado en Vercel y Netlify
 
-- [[Enlace al sitio desplegado en Netlify](https://gencond.netlify.app/)]
-- 
+- [Vercel](https://aut-wine.vercel.app/)
+- [[Netlify]()]
 
 ## Licencia
 
