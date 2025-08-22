@@ -36,6 +36,12 @@ Este proyecto está especialmente diseñado para:
 - [Vercel](https://aut-wine.vercel.app/)
 - [Netlify](https://autai.netlify.app/)
 
+## 🔗 Enlaces y estatus
+
+[![GitHub Repo](https://img.shields.io/badge/GitHub-aut--git-black?logo=github)](https://github.com/utilizas/aut.git)
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-aut--wine.vercel.app-black?logo=vercel)](https://aut-wine.vercel.app/)
+[![Netlify Deployment](https://img.shields.io/badge/Netlify-autai.netlify.app-00C7B7?logo=netlify)](https://autai.netlify.app/)
+
 ## Licencia
 
 This content is licensed under the **Creative Commons Attribution‑NonCommercial 4.0 International (CC BY‑NC 4.0)**.  
