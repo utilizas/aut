@@ -55,7 +55,7 @@ Este proyecto está especialmente diseñado para:
 
 ## 🆔 Licencia CC BY‑NC 4.0
 
-Este contenido está bajo la **licencia Creative Commons Attribution‑NonCommercial 4.0 International (CC BY‑NC 4.0)**.  
+Contenido bajo la **licencia Creative Commons Attribution‑NonCommercial 4.0 International (CC BY‑NC 4.0)**.  
 Eres libre de compartir y adaptar el material para fines no comerciales, siempre que se dé atribución.
 
 ---
